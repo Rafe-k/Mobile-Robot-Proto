@@ -66,8 +66,12 @@ void setup() {
   do {
     if (rfidEnabled && digitalRead(button2)){
       rfidEnabled = false;
+      digitalWrite(led1, HIGH);
+      digitalWrite(led2, LOW);
     } else if (digitalRead(button2)){
       rfidEnabled = true;
+      digitalWrite(led1, LOW);
+      digitalWrite(led2, HIGH);
     }
     if (rfidEnabled){
       SPI.begin();
@@ -79,6 +83,8 @@ void setup() {
       }
     }
   } while (digitalRead(button1) == false);
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
 }
 
 void loop() {
