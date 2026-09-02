@@ -79,22 +79,22 @@ void loop() {
   //Serial.println(line);
   //flashLeds();
   //colourSensor();
-  if (rfidEnabled) {
+  if (rfidEnabled) { // checks if the rfid is going to be used 
     rfidFunc();
   }
 
-  if (digitalRead(button1)){
-  digitalWrite(led1, HIGH);
+  if (digitalRead(button1)){ // this will be replaced with another trigger
+  digitalWrite(led1, HIGH); // motor 1 and motor 2 forward
   digitalWrite(led2, LOW);
   digitalWrite(led3, HIGH);
   digitalWrite(led4, LOW);
   } else if (digitalRead(button2)){
-    digitalWrite(led1, LOW);
+    digitalWrite(led1, LOW); // motor 1 and motor 2 backwards
     digitalWrite(led2, HIGH);
     digitalWrite(led3, LOW);
     digitalWrite(led4, HIGH);
   } else {
-    digitalWrite(led1, LOW);
+    digitalWrite(led1, LOW); // both motors off
     digitalWrite(led2, LOW);
     digitalWrite(led3, LOW);
     digitalWrite(led4, LOW);
