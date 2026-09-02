@@ -66,23 +66,25 @@ void setup() {
   do {
     if (rfidEnabled && digitalRead(button2)){
       rfidEnabled = false;
-      digitalWrite(led1, HIGH);
+      digitalWrite(led1, HIGH); // change this to play a higher frequency noise with the buzzer
       digitalWrite(led2, LOW);
     } else if (digitalRead(button2)){
       rfidEnabled = true;
-      digitalWrite(led1, LOW);
+      digitalWrite(led1, LOW); // change this to play a lower frequency noise with the buzzer
       digitalWrite(led2, HIGH);
     }
-    if (rfidEnabled){
-      SPI.begin();
-      mfrc522.PCD_Init();
-      Serial.println("RFID line");
-      for (byte i = 0; i < 6; i++) {
-
-        key.keyByte[i] = 0xFF;  //keyByte is defined in the "MIFARE_Key" 'struct' definition in the .h file of the library
-      }
-    }
   } while (digitalRead(button1) == false);
+  
+  if (rfidEnabled){
+    SPI.begin();
+    mfrc522.PCD_Init();
+    Serial.println("RFID line");
+    for (byte i = 0; i < 6; i++) {
+
+      key.keyByte[i] = 0xFF;  //keyByte is defined in the "MIFARE_Key" 'struct' definition in the .h file of the library
+    }
+  }
+  
   digitalWrite(led1, LOW);
   digitalWrite(led2, LOW);
 }
