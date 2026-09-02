@@ -61,7 +61,14 @@ void setup() {
 
   Serial.begin(9600);
 
+  
+
   do {
+    if (rfidEnabled && digitalRead(button2)){
+      rfidEnabled = false;
+    } else if (digitalRead(button2)){
+      rfidEnabled = true;
+    }
     if (rfidEnabled){
       SPI.begin();
       mfrc522.PCD_Init();
@@ -71,7 +78,7 @@ void setup() {
         key.keyByte[i] = 0xFF;  //keyByte is defined in the "MIFARE_Key" 'struct' definition in the .h file of the library
       }
     }
-  } while (digitalRead(led1) == false);
+  } while (digitalRead(button1) == false);
 }
 
 void loop() {
